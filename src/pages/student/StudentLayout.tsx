@@ -1,53 +1,61 @@
 import { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
-import {
-  Home, FileText, Upload, CreditCard, Award, Video, Settings, LogOut, Menu, Bell
-} from "lucide-react";
+import { FaBars, FaBell, FaSignOutAlt, FaChevronRight } from "react-icons/fa";
+import { MdDashboard, MdPayment, MdSettings, MdVideoCall, MdUpload } from "react-icons/md";
+import { BsFileEarmarkText, BsAwardFill } from "react-icons/bs";
 import { StatusBadge } from "@/components/StatusBadge";
 
 const sidebarItems = [
-  { label: "Dashboard", icon: Home, to: "/dashboard" },
-  { label: "My Application", icon: FileText, to: "/dashboard/application" },
-  { label: "Documents", icon: Upload, to: "/dashboard/documents" },
-  { label: "Payments", icon: CreditCard, to: "/dashboard/payments" },
-  { label: "Offer Letter", icon: Award, to: "/dashboard/offer" },
-  { label: "Online Classes", icon: Video, to: "/dashboard/classes" },
-  { label: "Settings", icon: Settings, to: "/dashboard/settings" },
+  { label: "Dashboard", icon: MdDashboard, to: "/dashboard" },
+  { label: "My Application", icon: BsFileEarmarkText, to: "/dashboard/application" },
+  { label: "Documents", icon: MdUpload, to: "/dashboard/documents" },
+  { label: "Payments", icon: MdPayment, to: "/dashboard/payments" },
+  { label: "Offer Letter", icon: BsAwardFill, to: "/dashboard/offer" },
+  { label: "Online Classes", icon: MdVideoCall, to: "/dashboard/classes" },
+  { label: "Settings", icon: MdSettings, to: "/dashboard/settings" },
 ];
 
 export default function StudentLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
 
+  const currentPage = sidebarItems.find((i) =>
+    i.to === "/dashboard" ? location.pathname === "/dashboard" : location.pathname.startsWith(i.to)
+  )?.label ?? "Dashboard";
+
   return (
-    <div className="flex h-screen bg-surface">
+    <div className="flex h-screen bg-surface overflow-hidden">
       {sidebarOpen && (
-        <div className="fixed inset-0 bg-foreground/20 z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />
+        <div className="fixed inset-0 bg-black/40 z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />
       )}
 
-      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-[240px] bg-background border-r border-border flex flex-col transition-transform lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
-        <div className="p-5 border-b border-border">
+      {/* Sidebar */}
+      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-[240px] xl:w-[260px] bg-background border-r border-border flex flex-col transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className="p-4 sm:p-5 border-b border-border flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-input bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">C</span>
+              <span className="text-primary-foreground font-black text-sm">C</span>
             </div>
-            <span className="font-bold text-lg text-foreground">CCOG</span>
+            <span className="font-black text-lg text-foreground">CCOG</span>
           </Link>
+          <button className="lg:hidden text-muted-foreground hover:text-foreground" onClick={() => setSidebarOpen(false)}>
+            <FaChevronRight size={14} />
+          </button>
         </div>
 
-        <div className="p-4 border-b border-border">
+        <div className="p-3 sm:p-4 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-              <span className="text-accent font-semibold">A</span>
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+              <span className="text-accent font-bold">A</span>
             </div>
-            <div>
-              <p className="text-sm font-semibold text-foreground">Ali Hassan</p>
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-foreground truncate">Ali Hassan</p>
               <StatusBadge variant="info">Student</StatusBadge>
             </div>
           </div>
         </div>
 
-        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-2 sm:p-3 space-y-0.5 overflow-y-auto">
           {sidebarItems.map((item) => {
             const active = item.to === "/dashboard"
               ? location.pathname === "/dashboard"
@@ -57,12 +65,12 @@ export default function StudentLayout() {
                 key={item.to}
                 to={item.to}
                 onClick={() => setSidebarOpen(false)}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-input text-sm font-medium transition-colors relative ${
-                  active ? "bg-accent/10 text-accent" : "text-muted-foreground hover:bg-surface hover:text-foreground"
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-input text-sm font-medium transition-all relative ${
+                  active ? "bg-accent/10 text-accent font-semibold" : "text-muted-foreground hover:bg-surface hover:text-foreground"
                 }`}
               >
                 {active && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-accent rounded-r" />}
-                <item.icon size={18} />
+                <item.icon size={17} />
                 {item.label}
               </Link>
             );
@@ -70,36 +78,33 @@ export default function StudentLayout() {
         </nav>
 
         <div className="p-3 border-t border-border">
-          <Link to="/" className="flex items-center gap-3 px-3 py-2.5 rounded-input text-sm font-medium text-destructive hover:bg-destructive/5 transition-colors">
-            <LogOut size={18} /> Logout
+          <Link to="/" className="flex items-center gap-3 px-3 py-2.5 rounded-input text-sm font-semibold text-destructive hover:bg-destructive/5 transition-colors">
+            <FaSignOutAlt size={15} /> Logout
           </Link>
         </div>
       </aside>
 
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="h-16 border-b border-border bg-background flex items-center px-4 sm:px-8 justify-between shrink-0">
-          <div className="flex items-center gap-4">
-            <button className="lg:hidden p-2 hover:bg-surface rounded-input" onClick={() => setSidebarOpen(true)}>
-              <Menu size={20} />
+      {/* Main */}
+      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+        <header className="h-14 sm:h-16 border-b border-border bg-background flex items-center px-3 sm:px-6 justify-between shrink-0">
+          <div className="flex items-center gap-3 min-w-0">
+            <button className="lg:hidden p-2 hover:bg-surface rounded-input shrink-0" onClick={() => setSidebarOpen(true)}>
+              <FaBars size={18} />
             </button>
-            <h1 className="font-semibold text-foreground">
-              {sidebarItems.find((i) =>
-                i.to === "/dashboard" ? location.pathname === "/dashboard" : location.pathname.startsWith(i.to)
-              )?.label ?? "Dashboard"}
-            </h1>
+            <h1 className="font-bold text-foreground text-sm sm:text-base truncate">{currentPage}</h1>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <button className="relative p-2 hover:bg-surface rounded-input">
-              <Bell size={18} className="text-muted-foreground" />
+              <FaBell size={16} className="text-muted-foreground" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-destructive rounded-full" />
             </button>
             <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-              <span className="text-accent font-semibold text-sm">A</span>
+              <span className="text-accent font-bold text-sm">A</span>
             </div>
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-4 sm:p-8">
+        <main className="flex-1 overflow-y-auto p-3 sm:p-5 lg:p-8">
           <Outlet />
         </main>
       </div>
