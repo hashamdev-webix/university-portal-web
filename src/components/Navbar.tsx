@@ -18,10 +18,10 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-input bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">C</span>
+            <div className="w-9 h-9 rounded-input bg-primary flex items-center justify-center shadow-soft">
+              <span className="text-primary-foreground font-black text-sm">C</span>
             </div>
-            <span className="font-bold text-xl tracking-tight text-foreground">CCOG</span>
+            <span className="font-black text-xl tracking-tight text-foreground">CCOG</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
@@ -29,7 +29,7 @@ export function Navbar() {
               <Link
                 key={l.to}
                 to={l.to}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`text-sm font-semibold transition-colors hover:text-primary ${
                   location.pathname === l.to ? "text-primary" : "text-muted-foreground"
                 }`}
               >

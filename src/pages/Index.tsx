@@ -43,10 +43,11 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground leading-tight">
-                Your Future<br />Starts Here
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-tight">
+                Your Future<br />
+                <span className="text-primary">Starts Here</span>
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
+              <p className="mt-6 text-base text-muted-foreground max-w-lg leading-relaxed font-medium">
                 Apply for courses online, track your admission, and receive your offer letter — all in one place.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
@@ -141,8 +142,8 @@ export default function LandingPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-foreground">Admission in 4 Simple Steps</h2>
-            <p className="mt-3 text-muted-foreground">From registration to your offer letter — it's that easy</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Admission in 4 Simple Steps</h2>
+            <p className="mt-3 text-muted-foreground font-medium">From registration to your offer letter — it's that easy</p>
           </div>
           <div className="grid md:grid-cols-4 gap-8 relative">
             <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-[2px] border-t-2 border-dashed border-border" />
@@ -164,8 +165,8 @@ export default function LandingPage() {
       <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">Popular Courses</h2>
-            <p className="mt-3 text-muted-foreground">Explore our most sought-after programs</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Popular Courses</h2>
+            <p className="mt-3 text-muted-foreground font-medium">Explore our most sought-after programs</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {courses.map((c) => (
@@ -196,7 +197,7 @@ export default function LandingPage() {
       <section className="py-20 bg-accent/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">What Students Say</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">What Students Say</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t) => (

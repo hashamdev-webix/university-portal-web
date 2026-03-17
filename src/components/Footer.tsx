@@ -28,8 +28,8 @@ export function Footer() {
             <h4 className="font-semibold text-sm mb-4">Contact</h4>
             <ul className="space-y-2 text-sm opacity-60">
               <li>info@ccog.edu</li>
-              <li>+92 300 1234567</li>
-              <li>Islamabad, Pakistan</li>
+              <li>+1 (647) 382-9104</li>
+              <li>Toronto, Canada</li>
             </ul>
           </div>
         </div>

@@ -34,8 +34,8 @@ export default function AboutPage() {
           <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-6">
             <GraduationCap size={32} className="text-primary" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">About CCOG</h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-foreground tracking-tight">About CCOG</h1>
+          <p className="mt-6 text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed font-medium">
             CCOG is Pakistan's premier online college admission portal, connecting thousands of students with their dream institutions since 2010.
           </p>
         </div>
