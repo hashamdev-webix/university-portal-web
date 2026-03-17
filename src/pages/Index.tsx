@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 import {
   UserPlus, BookOpen, Upload, FileCheck, Clock, Star,
-  GraduationCap, Monitor, Users
+  GraduationCap, Monitor, Users, LayoutDashboard, ShieldCheck, ArrowRight
 } from "lucide-react";
 
 const stats = [
@@ -56,6 +56,9 @@ export default function LandingPage() {
                 <Link to="/courses" className="px-6 py-3 border border-border text-foreground rounded-input font-medium hover:bg-surface transition-colors">
                   Browse Courses
                 </Link>
+                <Link to="/dashboard" className="flex items-center gap-2 px-6 py-3 border border-accent text-accent rounded-input font-medium hover:bg-accent/5 transition-colors">
+                  <LayoutDashboard size={16} /> View Dashboard
+                </Link>
               </div>
             </div>
             <div className="hidden lg:block animate-fade-in">
@@ -84,6 +87,37 @@ export default function LandingPage() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Demo Access Banner */}
+      <section className="bg-gradient-to-r from-primary/5 to-accent/5 border-y border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-accent mb-1">Live Demo</p>
+              <h3 className="text-lg font-bold text-foreground">Explore the Portal</h3>
+              <p className="text-sm text-muted-foreground mt-1">Click below to see the student or admin dashboard in action</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <Link
+                to="/dashboard"
+                className="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-input font-medium hover:opacity-90 transition-all text-sm"
+              >
+                <LayoutDashboard size={16} />
+                Student Dashboard
+                <ArrowRight size={14} />
+              </Link>
+              <Link
+                to="/admin"
+                className="flex items-center justify-center gap-2 px-6 py-3 border border-border text-foreground rounded-input font-medium hover:bg-surface transition-colors text-sm"
+              >
+                <ShieldCheck size={16} />
+                Admin Panel
+                <ArrowRight size={14} />
+              </Link>
             </div>
           </div>
         </div>

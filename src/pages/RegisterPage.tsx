@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Phone, Lock, Calendar, MapPin, CreditCard, ArrowLeft } from "lucide-react";
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "", email: "", phone: "", password: "", confirmPassword: "",
     dob: "", gender: "", city: "", cnic: "",
@@ -81,7 +82,7 @@ export default function RegisterPage() {
             <>
               <h1 className="text-2xl font-bold text-foreground">Personal Details</h1>
               <p className="text-muted-foreground text-sm mt-1">Step 2 of 2 — Personal information</p>
-              <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <form className="mt-6 space-y-4" onSubmit={(e) => { e.preventDefault(); navigate("/dashboard"); }}>
                 <InputField icon={Calendar} label="Date of Birth" type="date" value={form.dob} onChange={(v) => update("dob", v)} />
                 <div>
                   <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Gender</label>

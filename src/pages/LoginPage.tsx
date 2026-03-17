@@ -1,11 +1,22 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState<"student" | "admin">("student");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (role === "admin") {
+      navigate("/admin");
+    } else {
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <div className="min-h-screen flex">
@@ -25,6 +36,19 @@ export default function LoginPage() {
           <p className="mt-4 text-primary-foreground/60 max-w-sm mx-auto">
             Join thousands of students who have found their path through CCOG.
           </p>
+          <div className="mt-8 grid grid-cols-2 gap-4 text-left">
+            {[
+              { label: "Students", value: "12,000+" },
+              { label: "Courses", value: "200+" },
+              { label: "Colleges", value: "50+" },
+              { label: "Satisfaction", value: "98%" },
+            ].map((s) => (
+              <div key={s.label} className="bg-white/10 rounded-card p-3">
+                <p className="text-white font-bold text-lg">{s.value}</p>
+                <p className="text-white/60 text-xs">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -39,9 +63,25 @@ export default function LoginPage() {
           </div>
 
           <h1 className="text-2xl font-bold text-foreground">Welcome Back</h1>
-          <p className="text-muted-foreground text-sm mt-1">Login to your student portal</p>
+          <p className="text-muted-foreground text-sm mt-1">Login to your portal</p>
 
-          <form className="mt-8 space-y-5" onSubmit={(e) => e.preventDefault()}>
+          {/* Role Toggle */}
+          <div className="flex gap-2 mt-6 p-1 bg-surface rounded-input border border-border">
+            <button
+              onClick={() => setRole("student")}
+              className={`flex-1 py-2 text-sm font-medium rounded-sm transition-colors ${role === "student" ? "bg-background shadow-soft text-foreground" : "text-muted-foreground"}`}
+            >
+              Student
+            </button>
+            <button
+              onClick={() => setRole("admin")}
+              className={`flex-1 py-2 text-sm font-medium rounded-sm transition-colors ${role === "admin" ? "bg-background shadow-soft text-foreground" : "text-muted-foreground"}`}
+            >
+              Admin
+            </button>
+          </div>
+
+          <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
             <div>
               <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email</label>
               <div className="relative mt-1">
@@ -78,10 +118,10 @@ export default function LoginPage() {
             </div>
 
             <button type="submit" className="w-full py-2.5 bg-primary text-primary-foreground rounded-input font-medium hover:opacity-90 transition-all active:scale-[0.98]">
-              Login
+              Login as {role === "admin" ? "Admin" : "Student"}
             </button>
 
-            <div className="relative py-4">
+            <div className="relative py-2">
               <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-border" /></div>
               <div className="relative flex justify-center"><span className="bg-background px-3 text-xs text-muted-foreground">or</span></div>
             </div>
