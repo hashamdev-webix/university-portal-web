@@ -49,7 +49,9 @@ export default function StudentLayout() {
 
         <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
           {sidebarItems.map((item) => {
-            const active = location.pathname === item.to;
+            const active = item.to === "/dashboard"
+              ? location.pathname === "/dashboard"
+              : location.pathname.startsWith(item.to);
             return (
               <Link
                 key={item.to}
@@ -81,7 +83,9 @@ export default function StudentLayout() {
               <Menu size={20} />
             </button>
             <h1 className="font-semibold text-foreground">
-              {sidebarItems.find((i) => i.to === location.pathname)?.label ?? "Dashboard"}
+              {sidebarItems.find((i) =>
+                i.to === "/dashboard" ? location.pathname === "/dashboard" : location.pathname.startsWith(i.to)
+              )?.label ?? "Dashboard"}
             </h1>
           </div>
           <div className="flex items-center gap-3">

@@ -98,14 +98,16 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-accent mb-1">Live Demo</p>
-              <h3 className="text-lg font-bold text-foreground">Explore the Portal</h3>
-              <p className="text-sm text-muted-foreground mt-1">Click below to see the student or admin dashboard in action</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-accent mb-1">Live Demo — No Login Required</p>
+              <h3 className="text-lg font-bold text-foreground">Explore Both Portals</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                Student portal for applicants &nbsp;·&nbsp; Admin panel for staff
+              </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <Link
                 to="/dashboard"
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-input font-medium hover:opacity-90 transition-all text-sm"
+                className="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-input font-semibold hover:opacity-90 transition-all text-sm"
               >
                 <LayoutDashboard size={16} />
                 Student Dashboard
@@ -113,7 +115,7 @@ export default function LandingPage() {
               </Link>
               <Link
                 to="/admin"
-                className="flex items-center justify-center gap-2 px-6 py-3 border border-border text-foreground rounded-input font-medium hover:bg-surface transition-colors text-sm"
+                className="flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background rounded-input font-semibold hover:opacity-80 transition-all text-sm"
               >
                 <ShieldCheck size={16} />
                 Admin Panel

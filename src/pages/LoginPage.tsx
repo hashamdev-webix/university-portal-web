@@ -69,17 +69,23 @@ export default function LoginPage() {
           <div className="flex gap-2 mt-6 p-1 bg-surface rounded-input border border-border">
             <button
               onClick={() => setRole("student")}
-              className={`flex-1 py-2 text-sm font-medium rounded-sm transition-colors ${role === "student" ? "bg-background shadow-soft text-foreground" : "text-muted-foreground"}`}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-sm transition-colors ${role === "student" ? "bg-background shadow-soft text-foreground" : "text-muted-foreground"}`}
             >
-              Student
+              🎓 Student Login
             </button>
             <button
               onClick={() => setRole("admin")}
-              className={`flex-1 py-2 text-sm font-medium rounded-sm transition-colors ${role === "admin" ? "bg-background shadow-soft text-foreground" : "text-muted-foreground"}`}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-sm transition-colors ${role === "admin" ? "bg-background shadow-soft text-foreground" : "text-muted-foreground"}`}
             >
-              Admin
+              🛡️ Admin Login
             </button>
           </div>
+
+          {role === "admin" && (
+            <div className="mt-3 p-3 bg-accent/10 border border-accent/30 rounded-input text-xs text-accent font-medium">
+              You are logging in as Admin — you will be redirected to the Admin Panel.
+            </div>
+          )}
 
           <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
             <div>

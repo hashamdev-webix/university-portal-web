@@ -21,7 +21,9 @@ export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
 
-  const currentPage = sidebarItems.find((i) => i.to === location.pathname)?.label ?? "Dashboard";
+  const currentPage = sidebarItems.find((i) =>
+    i.to === "/admin" ? location.pathname === "/admin" : location.pathname.startsWith(i.to)
+  )?.label ?? "Dashboard";
 
   return (
     <div className="flex h-screen bg-surface">
@@ -44,14 +46,16 @@ export default function AdminLayout() {
 
         <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
           {sidebarItems.map((item) => {
-            const active = location.pathname === item.to;
+            const active = item.to === "/admin"
+              ? location.pathname === "/admin"
+              : location.pathname.startsWith(item.to);
             return (
               <Link
                 key={item.to}
                 to={item.to}
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center justify-between px-3 py-2.5 rounded-input text-sm transition-colors ${
-                  active ? "bg-accent/20 text-admin-sidebar-active font-medium" : "text-admin-sidebar-foreground hover:text-admin-sidebar-active hover:bg-admin-sidebar-foreground/5"
+                  active ? "bg-accent/20 text-admin-sidebar-active font-semibold border-l-2 border-accent" : "text-admin-sidebar-foreground hover:text-admin-sidebar-active hover:bg-admin-sidebar-foreground/5"
                 }`}
               >
                 <span className="flex items-center gap-3">

@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Courses", to: "/courses" },
   { label: "About", to: "/about" },
   { label: "Dashboard", to: "/dashboard" },
+  { label: "Admin", to: "/admin" },
 ];
 
 export function Navbar() {
